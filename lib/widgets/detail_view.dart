@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:weather_apk/modals/weather_forecast_daily_one.dart';
+import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 import 'package:weather_apk/utilites/forecast_util.dart';
 
 class DetailView extends StatelessWidget {

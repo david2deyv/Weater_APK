@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:weather_apk/models/day_weather.dart';
 import 'package:weather_apk/utilites/forecast_util.dart';
 
-Widget forecastCard(AsyncSnapshot snapshot, int index) {
-  var forecastList = snapshot.data.list;
+Widget forecastCard(DayWeather dayWeather) {
   var dayOfWeek = '';
-  DateTime date =
-      DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
-  var fullDate = Util.getFormattedDate(date);
+  var fullDate = Util.getFormattedDate(dayWeather.date);
   dayOfWeek = fullDate.substring(0, 3);
-  var tempMin = forecastList[index].main.tempMin.toStringAsFixed(0);
-  var icon = forecastList[index].getIconUrl();
+  final String averageTemp = dayWeather.averageTemp.toStringAsFixed(0);
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +30,7 @@ Widget forecastCard(AsyncSnapshot snapshot, int index) {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '$tempMin °С',
+                      '$averageTemp °С',
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.white,
@@ -41,7 +38,7 @@ Widget forecastCard(AsyncSnapshot snapshot, int index) {
                     ),
                   ),
                   Image.network(
-                    icon,
+                    dayWeather.iconUrl,
                     scale: 1.2,
                     color: Colors.white,
                   ),

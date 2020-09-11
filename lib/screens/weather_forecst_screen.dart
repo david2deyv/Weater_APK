@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:weather_apk/api/weather_api.dart';
-import 'package:weather_apk/modals/weather_forecast_daily_one.dart';
+import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 import 'package:weather_apk/widgets/button_list_view.dart';
 import 'package:weather_apk/widgets/city_view.dart';
 import 'package:weather_apk/widgets/detail_view.dart';
