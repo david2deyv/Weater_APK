@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_apk/modals/weather_forecast_daily_one.dart';
+import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 import 'package:weather_apk/utilites/forecast_util.dart';
 
 class CityView extends StatelessWidget {

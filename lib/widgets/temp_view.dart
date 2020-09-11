@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:weather_apk/modals/weather_forecast_daily_one.dart';
+import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 
 class TempView extends StatelessWidget {
   final AsyncSnapshot<WeatherForecast> snapshot;

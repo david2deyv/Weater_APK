@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:weather_apk/modals/weather_forecast_daily_one.dart';
+import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 import 'package:weather_apk/utilites/constsns.dart';
 import 'package:http/http.dart' as http;
 
