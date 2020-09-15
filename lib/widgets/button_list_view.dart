@@ -22,6 +22,7 @@ class ButtonListView extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        
         Container(
           height: 140,
           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -30,7 +31,7 @@ class ButtonListView extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(width: 8),
             itemCount: daysAmount,
             itemBuilder: (context, index) {
-              final DayWeather dayWeather = _mapDayWeather(
+              final DayWeather dayWeather = DayWeather.fromForecast(
                 forecast: snapshot.data,
                 day: _getDayByIndex(index),
               );
@@ -48,21 +49,23 @@ class ButtonListView extends StatelessWidget {
     );
   }
 
-  DayWeather _mapDayWeather({WeatherForecast forecast, DateTime day}) {
-    // 40 elements here
-    final List<WeatherList> allForecasts = forecast.list;
-    // Our future result
-    final List<WeatherList> result = [];
+// были фигурные скобки
+  // DayWeather _mapDayWeather(WeatherForecast forecast, DateTime day) {
+  //   // 40 elements here
+  //   final List<WeatherList> allForecasts = forecast.list;
+  //   // Our future result
+  //   final List<WeatherList> result = [];
 
-    for (WeatherList dayForecast in allForecasts) {
-      final DateTime date = DateTime.fromMillisecondsSinceEpoch(dayForecast.dt * 1000);
-      if (date.day == day.day) {
-        result.add(dayForecast);
-      }
-    }
+  //   for (WeatherList dayForecast in allForecasts) {
+  //     final DateTime date =
+  //         DateTime.fromMillisecondsSinceEpoch(dayForecast.dt * 1000);
+  //     if (date.day == day.day) {
+  //       result.add(dayForecast);
+  //     }
+  //   }
 
-    return DayWeather(result);
-  }
+  //   return DayWeather(result);
+  // }
 
   DateTime _getDayByIndex(int index) {
     final DateTime now = DateTime.now();
