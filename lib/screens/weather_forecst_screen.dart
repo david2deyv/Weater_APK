@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:weather_apk/api/weather_api.dart';
 import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 import 'package:weather_apk/screens/city_screen.dart';
@@ -18,15 +17,14 @@ class WeatherForecastScreen extends StatefulWidget {
 
 class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   Future<WeatherForecast> forecastObject;
-  String _cityName = 'London';
-  // String _cityName;
+  String _cityName;
 
   @override
   void initState() {
     super.initState();
 
     if (widget.locationWeather != null) {
-      forecastObject = WeatherApi().fetchWeatherForecast();
+      forecastObject = Future.value(widget.locationWeather);
     }
   }
 
@@ -37,6 +35,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
         backgroundColor: Colors.black,
         title: Text('openweathermap.org'),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         leading: IconButton(
           icon: Icon(Icons.my_location),
           onPressed: () {
@@ -56,8 +55,8 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
               if (tappedName != null) {
                 _cityName = tappedName;
                 setState(() {
-                  forecastObject =
-                      WeatherApi().fetchWeatherForecast(cityName: _cityName, isCity: true);
+                  forecastObject = WeatherApi()
+                      .fetchWeatherForecast(cityName: _cityName, isCity: true);
                 });
               }
             },
@@ -85,9 +84,10 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                   );
                 } else {
                   return Center(
-                    child: SpinKitDoubleBounce(
-                      color: Colors.black87,
-                      size: 100.0,
+                    child: Text(
+                      'City not found\nPlease, enter correct city',
+                      style: TextStyle(fontSize: 25),
+                      textAlign: TextAlign.center,
                     ),
                   );
                 }
