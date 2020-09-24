@@ -8,13 +8,13 @@ class DayWeather {
   DayWeather(this.forecastList);
 
   factory DayWeather.fromForecast({
-    @required WeatherForecast forecast,
+    @required List<ForecastItem> allForecasts,
     @required DateTime day,
   }) {
-    final List<WeatherList> allForecasts = forecast.list;
-    final List<WeatherList> result = [];
 
-    for (WeatherList dayForecast in allForecasts) {
+    final List<ForecastItem> result = [];
+
+    for (ForecastItem dayForecast in allForecasts) {
       final DateTime date =
           DateTime.fromMillisecondsSinceEpoch(dayForecast.dt * 1000);
       if (date.day == day.day) {
@@ -26,7 +26,7 @@ class DayWeather {
   }
 
   /// Forecasts for particular day
-  final List<WeatherList> forecastList;
+  final List<ForecastItem> forecastList;
 
   double get averageTemp {
     double temp = 0;

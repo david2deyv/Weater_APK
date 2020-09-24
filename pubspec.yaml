@@ -32,6 +32,7 @@ dependencies:
   intl: ^0.16.1
   font_awesome_flutter: ^8.8.1
   geolocator: ^6.0.0+4
+  flutter_bloc: ^6.0.5
 
 dev_dependencies:
   flutter_test:

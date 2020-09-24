@@ -1,10 +1,11 @@
+import 'package:weather_apk/models/day_weather.dart';
 import 'package:weather_apk/utilites/constsns.dart';
 
 class WeatherForecast {
   String cod;
   int message;
   int cnt;
-  List<WeatherList> list;
+  List<ForecastItem> list;
   City city;
 
   WeatherForecast({this.cod, this.message, this.cnt, this.list, this.city});
@@ -14,9 +15,9 @@ class WeatherForecast {
     message = json['message'];
     cnt = json['cnt'];
     if (json['list'] != null) {
-      list = new List<WeatherList>();
+      list = new List<ForecastItem>();
       json['list'].forEach((v) {
-        list.add(new WeatherList.fromJson(v));
+        list.add(new ForecastItem.fromJson(v));
       });
     }
     city = json['city'] != null ? new City.fromJson(json['city']) : null;
@@ -35,9 +36,27 @@ class WeatherForecast {
     }
     return data;
   }
+
+  List<DayWeather> get daysForecast {
+    List<DayWeather> res = [];
+
+    for (int i = 0; i < 5; i++) {
+      final DayWeather dayWeather =
+          DayWeather.fromForecast(allForecasts: list, day: _getDayByIndex(i));
+      res.add(dayWeather);
+    }
+
+    return res;
+  }
+
+  DateTime _getDayByIndex(int index) {
+    final DateTime now = DateTime.now();
+    DateTime res = now.add(Duration(days: index));
+    return res;
+  }
 }
 
-class WeatherList {
+class ForecastItem {
   int dt;
   Main main;
   List<Weather> weather;
@@ -48,7 +67,7 @@ class WeatherList {
   Sys sys;
   String dtTxt;
 
-  WeatherList(
+  ForecastItem(
       {this.dt,
       this.main,
       this.weather,
@@ -59,7 +78,7 @@ class WeatherList {
       this.sys,
       this.dtTxt});
 
-  WeatherList.fromJson(Map<String, dynamic> json) {
+  ForecastItem.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
     main = json['main'] != null ? new Main.fromJson(json['main']) : null;
     if (json['weather'] != null) {

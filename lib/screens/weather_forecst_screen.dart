@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:weather_apk/api/weather_api.dart';
 import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 import 'package:weather_apk/screens/city_screen.dart';
-import 'package:weather_apk/widgets/button_list_view.dart';
+import 'package:weather_apk/widgets/days_forecast_widget.dart';
 import 'package:weather_apk/widgets/city_view.dart';
 import 'package:weather_apk/widgets/detail_view.dart';
-import 'package:weather_apk/widgets/temp_view.dart';
+import 'package:weather_apk/widgets/current_temp_widget.dart';
 
 class WeatherForecastScreen extends StatefulWidget {
   final locationWeather;
@@ -17,7 +17,7 @@ class WeatherForecastScreen extends StatefulWidget {
 
 class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   Future<WeatherForecast> forecastObject;
-  String _cityName;
+  String _cityName = 'London';
 
   @override
   void initState() {
@@ -70,16 +70,23 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
               future: forecastObject,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
+                  final WeatherForecast weatherForecast = snapshot.data;
+                  final ForecastItem currentForecast =
+                      weatherForecast.list.first;
+                  final City city = weatherForecast.city;
+                  final DateTime date = DateTime.fromMillisecondsSinceEpoch(
+                      currentForecast.dt * 1000);
+
                   return Column(
                     children: <Widget>[
                       SizedBox(height: 50.0),
-                      CityView(snapshot: snapshot),
+                      CityView(city: city, date: date),
                       SizedBox(height: 50.0),
-                      TempView(snapshot: snapshot),
+                      CurrentTempWidget(forecast: currentForecast),
                       SizedBox(height: 50.0),
-                      DetailView(snapshot: snapshot),
+                      DetailView(forecastItem: currentForecast),
                       SizedBox(height: 50.0),
-                      ButtonListView(snapshot: snapshot)
+                      DaysForecastWidget(days: weatherForecast.daysForecast)
                     ],
                   );
                 } else {
