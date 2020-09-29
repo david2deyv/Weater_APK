@@ -42,7 +42,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: Icon(Icons.my_location),
-          onPressed: () {},
+          onPressed: () => _bloc.event.add(LoadWeatherByLocation()),
         ),
         actions: <Widget>[
           IconButton(

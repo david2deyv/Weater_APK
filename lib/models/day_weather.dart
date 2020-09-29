@@ -1,5 +1,3 @@
-
-
 import 'package:meta/meta.dart';
 import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 
@@ -11,7 +9,6 @@ class DayWeather {
     @required List<ForecastItem> allForecasts,
     @required DateTime day,
   }) {
-
     final List<ForecastItem> result = [];
 
     for (ForecastItem dayForecast in allForecasts) {
@@ -52,7 +49,7 @@ class DayWeather {
   double get averageTempMax {
     double tempMax = 0;
     forecastList.forEach((forecast) => tempMax += forecast.main.tempMax);
-    
+
     return tempMax / forecastList.length;
   }
 }

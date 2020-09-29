@@ -50,7 +50,8 @@ class WeatherForecast {
   }
 
   DateTime _getDayByIndex(int index) {
-    final DateTime now = DateTime.now();
+    final DateTime now =
+        DateTime.fromMillisecondsSinceEpoch(list.first.dt * 1000);
     DateTime res = now.add(Duration(days: index));
     return res;
   }
