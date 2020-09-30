@@ -1,22 +1,29 @@
 import 'package:weather_apk/api/weather_api.dart';
+import 'package:weather_apk/api/weather_target.dart';
 import 'package:weather_apk/models/weather_forecast_daily_one.dart';
+import 'package:weather_apk/utilites/location.dart';
 
 abstract class WeatherRepository {
-  // TODO change to one param. smth like WeatherProvider
-  Future<WeatherForecast> getWeatherApi({String city, bool isCity});
+  Future<WeatherForecast> getWeatherApi({WeatherTarget target});
 }
 
 class WeatherRepositoryImpl implements WeatherRepository {
   WeatherApi _weatherApi = WeatherApi();
-  Future<WeatherForecast> getWeatherApi({String city, bool isCity}) {
-    // TODO Use isCity parameter 
-    return _weatherApi.fetchWeatherForecast(cityName: city, isCity: isCity);
+  Future<WeatherForecast> getWeatherApi({WeatherTarget target}) async {
+    if (target is WeatherTargetCity) {
+      return _weatherApi.fetchWeatherForecastByCity(cityName: target.cityName);
+    } else if (target is WeatherTargetLocation) {
+      return _weatherApi.fetchWeatherForecastByLocation(
+          location: target.location);
+    } else {
+      return Future.error('Unknown target');
+    }
   }
 }
 
 class WeatherRepositoryMock implements WeatherRepository {
   @override
-  Future<WeatherForecast> getWeatherApi({String city, bool isCity}) async {
+  Future<WeatherForecast> getWeatherApi({WeatherTarget target}) async {
     return WeatherForecast(city: City(name: 'London', country: 'EN'));
   }
 }

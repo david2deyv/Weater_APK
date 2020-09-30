@@ -42,7 +42,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: Icon(Icons.my_location),
-          onPressed: () => _bloc.event.add(LoadWeatherByLocation()),
+          onPressed: () => _bloc.handle(LoadWeatherByLocation()),
         ),
         actions: <Widget>[
           IconButton(
@@ -71,7 +71,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
               return Center(
                 child: FlatButton(
                   child: Text('RETRY'),
-                  onPressed: () => _bloc.event.add(ResetEvent()),
+                  onPressed: () => _bloc.handle(ResetEvent()),
                 ),
               );
             } else if (state is WrongCityState) {
@@ -136,7 +136,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
       return CityScreen();
     }));
     if (tappedName != null) {
-      _bloc.event.add(ChangeCityEvent(tappedName));
+      _bloc.handle(ChangeCityEvent(tappedName));
     }
   }
 }
