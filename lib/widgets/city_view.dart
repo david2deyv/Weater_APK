@@ -21,7 +21,7 @@ class CityView extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 28.0,
-            color: Colors.black87,
+     
           ),
         ),
         Text(

@@ -7,10 +7,11 @@ class Util {
     return DateFormat('EEEE, MMM d, y').format(dateTime);
   }
 
-  static getItem(IconData iconData, int value, String units) {
+  static getItem(BuildContext context, IconData iconData, int value, String units) {
+    final Color color = Theme.of(context).primaryColor;
     return Column(
       children: <Widget>[
-        Icon(iconData, color: Colors.black87, size: 28.0),
+        Icon(iconData, color: color, size: 28.0),
         SizedBox(height: 10.0),
         Text(
           '$value',

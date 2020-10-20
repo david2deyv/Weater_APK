@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_apk/api/weather_api.dart';
 import 'package:weather_apk/api/weather_repository.dart';
 import 'package:weather_apk/bloc/forecast_bloc.dart';
@@ -11,6 +12,8 @@ import 'package:weather_apk/bloc/forecast_state.dart';
 // import 'package:weather_apk/bloc/user_bloc.dart';
 import 'package:weather_apk/models/weather_forecast_daily_one.dart';
 import 'package:weather_apk/screens/city_screen.dart';
+import 'package:weather_apk/theme/theme_bloc.dart';
+import 'package:weather_apk/theme/theme_event.dart';
 import 'package:weather_apk/widgets/days_forecast_widget.dart';
 import 'package:weather_apk/widgets/city_view.dart';
 import 'package:weather_apk/widgets/detail_view.dart';
@@ -26,10 +29,12 @@ class WeatherForecastScreen extends StatefulWidget {
 
 class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   final ForecastBloc _bloc = ForecastBloc(WeatherRepositoryImpl());
+  ThemeBloc _themeBloc;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _themeBloc = Provider.of<ThemeBloc>(context);
   }
 
   @override
@@ -39,18 +44,21 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
         backgroundColor: Colors.black,
         title: Text('openweathermap.org'),
         centerTitle: true,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: Icon(Icons.my_location),
-          onPressed: () => _bloc.handle(LoadWeatherByLocation()),
-        ),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.color_lens),
+            onPressed: () => _themeBloc.handle(ChangeTheme()),
+          ),
           IconButton(
             icon: Icon(Icons.location_city),
             onPressed: () async {
               openCityNameScreen();
             },
-          )
+          ),
+          IconButton(
+            icon: Icon(Icons.my_location),
+            onPressed: () => _bloc.handle(LoadWeatherByLocation()),
+          ),
         ],
       ),
       body: StreamBuilder<ForecastState>(

@@ -17,10 +17,10 @@ class DetailView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
-        Util.getItem(FontAwesomeIcons.thermometerThreeQuarters,
+        Util.getItem(context, FontAwesomeIcons.thermometerThreeQuarters,
             pressure.round(), 'mm Hg'),
-        Util.getItem(FontAwesomeIcons.cloudRain, humidity, '%'),
-        Util.getItem(FontAwesomeIcons.wind, windSpeed.toInt(), 'm/s'),
+        Util.getItem(context, FontAwesomeIcons.cloudRain, humidity, '%'),
+        Util.getItem(context, FontAwesomeIcons.wind, windSpeed.toInt(), 'm/s'),
       ],
     );
   }

@@ -10,6 +10,7 @@ class DaysForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color cardBackgroundColor = Theme.of(context).backgroundColor;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -32,7 +33,7 @@ class DaysForecastWidget extends StatelessWidget {
               return Container(
                 width: MediaQuery.of(context).size.width / 2.7,
                 height: 160,
-                color: Colors.black87,
+                color: cardBackgroundColor,
                 child: forecastCard(days[index]),
               );
             },
