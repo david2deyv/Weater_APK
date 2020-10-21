@@ -8,7 +8,7 @@ class CurrentTempWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dynamic color = Theme.of(context);
+    final dynamic color = Theme.of(context).accentColor;
     final String icon = forecast.getIconUrl();
     final String temp = forecast.main.temp.toStringAsFixed(0);
     final String description = forecast.weather[0].description.toUpperCase();
@@ -20,7 +20,7 @@ class CurrentTempWidget extends StatelessWidget {
         Image.network(
           icon,
           scale: 0.7,
-          color: color.primaryColor,
+          color: color,
         ),
         SizedBox(width: 20.0),
         Column(

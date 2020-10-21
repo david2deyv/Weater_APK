@@ -88,12 +88,12 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                   children: [
                     Text(
                       'City not found\nPlease, enter correct city',
-                      style: TextStyle(fontSize: 20, color: Theme.of(context).primaryColor),
+                      style: TextStyle(fontSize: 20, color: Theme.of(context).accentColor),
                     ),
                     FlatButton(
                       child: Text(
                         'RETRY',
-                        style: TextStyle(fontSize: 20, color: Theme.of(context).primaryColor),
+                        style: TextStyle(fontSize: 20, color: Theme.of(context).accentColor),
                       ),
                       onPressed: () async {
                         openCityNameScreen();

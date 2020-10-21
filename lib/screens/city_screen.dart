@@ -15,7 +15,8 @@ class _CityScreenState extends State<CityScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Theme.of(context).primaryColor;
+    final Color primaryColor = Theme.of(context).accentColor;
+    final Color backgroundColor = Theme.of(context).backgroundColor;
 
 
     return Scaffold(
@@ -27,13 +28,13 @@ class _CityScreenState extends State<CityScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: TextField(
-                    cursorColor: Colors.blueGrey[800],
-                    style: TextStyle(color: Colors.white),
+                    cursorColor: backgroundColor,
+                    style: TextStyle(color: backgroundColor),
                     decoration: InputDecoration(
                       hintText: 'Enter City Name',
-                      hintStyle: TextStyle(color: Theme.of(context).accentColor),
+                      hintStyle: TextStyle(color: backgroundColor),
                       filled: true,
-                      fillColor: color,
+                      fillColor: primaryColor,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(10),
@@ -41,7 +42,7 @@ class _CityScreenState extends State<CityScreen> {
                           borderSide: BorderSide.none),
                       icon: Icon(
                         Icons.location_city,
-                        color: color,
+                        color: primaryColor,
                         size: 50,
                       ),
                     ),
@@ -52,7 +53,7 @@ class _CityScreenState extends State<CityScreen> {
                 ),
               ),
               FlatButton(
-                  child: Text('Get Weather', style: TextStyle(fontSize: 30, color: color)),
+                  child: Text('Get Weather', style: TextStyle(fontSize: 30, color: primaryColor)),
                   onPressed: () {
                     Navigator.pop(context, cityName);
                   })

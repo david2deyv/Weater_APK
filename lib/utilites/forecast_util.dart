@@ -8,7 +8,7 @@ class Util {
   }
 
   static getItem(BuildContext context, IconData iconData, int value, String units) {
-    final Color color = Theme.of(context).primaryColor;
+    final Color color = Theme.of(context).accentColor;
     return Column(
       children: <Widget>[
         Icon(iconData, color: color, size: 28.0),
