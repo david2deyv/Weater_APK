@@ -31,6 +31,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   final ForecastBloc _bloc = ForecastBloc(WeatherRepositoryImpl());
   ThemeBloc _themeBloc;
 
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -39,6 +40,8 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Color accentColor = Theme.of(context).accentColor;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('openweathermap.org'),
@@ -70,7 +73,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
             if (state is LoadingState) {
               return Center(
                 child: SpinKitDoubleBounce(
-                  color: Colors.black87,
+                  color: accentColor,
                   size: 100,
                 ),
               );
@@ -88,12 +91,12 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                   children: [
                     Text(
                       'City not found\nPlease, enter correct city',
-                      style: TextStyle(fontSize: 20, color: Theme.of(context).accentColor),
+                      style: TextStyle(fontSize: 20, color: accentColor),
                     ),
                     FlatButton(
                       child: Text(
                         'RETRY',
-                        style: TextStyle(fontSize: 20, color: Theme.of(context).accentColor),
+                        style: TextStyle(fontSize: 20, color: accentColor),
                       ),
                       onPressed: () async {
                         openCityNameScreen();

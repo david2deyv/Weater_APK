@@ -5,25 +5,25 @@ class AppThemes {
 
   static List<ThemeData> getThemes(BuildContext context) => [
         ThemeData(
-          primaryColor: Colors.yellow,
-          scaffoldBackgroundColor: Colors.yellow[400],
-          backgroundColor: Colors.yellow[300],
-          accentColor: Colors.purple,
+          primaryColor: Colors.blueGrey,
+          scaffoldBackgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey,
+          accentColor: Colors.cyan[200],
           brightness: Brightness.light,
           textTheme: context != null ? Theme.of(context).textTheme.apply(
-                bodyColor: Colors.purple,
+                bodyColor: Colors.cyan[200],
                 decorationColor: Colors.purple,
                 displayColor: Colors.purple,
               ) : TextTheme(),
         ),
                 ThemeData(
-          primaryColor: Colors.red,
-          scaffoldBackgroundColor: Colors.red,
-          backgroundColor: Colors.red[300],
-          accentColor: Colors.white,
+          primaryColor: Colors.red[200],
+          scaffoldBackgroundColor: Colors.red[300],
+          backgroundColor: Colors.red[200],
+          accentColor: Colors.white70,
           brightness: Brightness.light,
           textTheme: context != null ? Theme.of(context).textTheme.apply(
-                bodyColor: Colors.white,
+                bodyColor: Colors.white70,
                 decorationColor: Colors.blue,
                 displayColor: Colors.green,
               ) : TextTheme(),
