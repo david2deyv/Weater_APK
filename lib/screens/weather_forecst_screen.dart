@@ -41,7 +41,6 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
         title: Text('openweathermap.org'),
         centerTitle: true,
         actions: <Widget>[
@@ -89,12 +88,12 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                   children: [
                     Text(
                       'City not found\nPlease, enter correct city',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20, color: Theme.of(context).primaryColor),
                     ),
                     FlatButton(
                       child: Text(
                         'RETRY',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Theme.of(context).primaryColor),
                       ),
                       onPressed: () async {
                         openCityNameScreen();

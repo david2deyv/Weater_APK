@@ -18,7 +18,6 @@ class DaysForecastWidget extends StatelessWidget {
           '5-Day Weather Forecast'.toUpperCase(),
           style: TextStyle(
             fontSize: 20,
-            color: Colors.black87,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -33,7 +32,7 @@ class DaysForecastWidget extends StatelessWidget {
               return Container(
                 width: MediaQuery.of(context).size.width / 2.7,
                 height: 160,
-                color: cardBackgroundColor,
+                color: Theme.of(context).primaryColor,
                 child: forecastCard(days[index]),
               );
             },

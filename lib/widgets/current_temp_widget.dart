@@ -8,9 +8,11 @@ class CurrentTempWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dynamic color = Theme.of(context);
     final String icon = forecast.getIconUrl();
     final String temp = forecast.main.temp.toStringAsFixed(0);
     final String description = forecast.weather[0].description.toUpperCase();
+
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -18,7 +20,7 @@ class CurrentTempWidget extends StatelessWidget {
         Image.network(
           icon,
           scale: 0.7,
-          color: Colors.black87,
+          color: color.primaryColor,
         ),
         SizedBox(width: 20.0),
         Column(
@@ -27,12 +29,11 @@ class CurrentTempWidget extends StatelessWidget {
               '$temp °С',
               style: TextStyle(
                 fontSize: 54.0,
-                color: Colors.black87,
               ),
             ),
             Text(
               '$description',
-              style: TextStyle(fontSize: 18.0, color: Colors.black87),
+              style: TextStyle(fontSize: 18.0,),
             ),
           ],
         ),
