@@ -15,12 +15,12 @@ class Util {
         SizedBox(height: 10.0),
         Text(
           '$value',
-          style: TextStyle(fontSize: 20.0, color: Colors.black87),
+          style: TextStyle(fontSize: 20.0),
         ),
         SizedBox(height: 10.0),
         Text(
           '$units',
-          style: TextStyle(fontSize: 15.0, color: Colors.black87),
+          style: TextStyle(fontSize: 15.0),
         ),
       ],
     );

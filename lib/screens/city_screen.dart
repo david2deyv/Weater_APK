@@ -12,8 +12,12 @@ class _CityScreenState extends State<CityScreen> {
 
   String cityName;
 
+
   @override
   Widget build(BuildContext context) {
+    final Color color = Theme.of(context).primaryColor;
+
+
     return Scaffold(
       body: Container(
         child: SafeArea(
@@ -27,9 +31,9 @@ class _CityScreenState extends State<CityScreen> {
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'Enter City Name',
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Theme.of(context).accentColor),
                       filled: true,
-                      fillColor: Colors.black87,
+                      fillColor: color,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(10),
@@ -37,7 +41,7 @@ class _CityScreenState extends State<CityScreen> {
                           borderSide: BorderSide.none),
                       icon: Icon(
                         Icons.location_city,
-                        color: Colors.black87,
+                        color: color,
                         size: 50,
                       ),
                     ),
@@ -48,7 +52,7 @@ class _CityScreenState extends State<CityScreen> {
                 ),
               ),
               FlatButton(
-                  child: Text('Get Weather', style: TextStyle(fontSize: 30)),
+                  child: Text('Get Weather', style: TextStyle(fontSize: 30, color: color)),
                   onPressed: () {
                     Navigator.pop(context, cityName);
                   })
