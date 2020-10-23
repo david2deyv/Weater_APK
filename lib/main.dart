@@ -1,12 +1,24 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_apk/api/weather_target.dart';
+import 'package:weather_apk/db/city_entity.dart';
+import 'package:weather_apk/db/db.dart';
 import 'package:weather_apk/screens/weather_forecst_screen.dart';
 import 'package:weather_apk/theme/theme_bloc.dart';
 import 'package:weather_apk/theme/themes.dart';
 
 // import 'package:weather_apk/screens/weather_forecst_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final AppDatabase db = await $FloorAppDatabase.databaseBuilder(AppDatabase.name).build();
+  await db.citiesDao.insertCity(CityEntity.create(WeatherTargetCity('Miami'), false));
+  final res = await db.citiesDao.getAllCities();
+  log(res.toString());
+
   runApp(MyApp());
 }
 

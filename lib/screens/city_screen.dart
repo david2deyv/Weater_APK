@@ -53,10 +53,11 @@ class _CityScreenState extends State<CityScreen> {
                 ),
               ),
               FlatButton(
-                  child: Text('Get Weather', style: TextStyle(fontSize: 30, color: primaryColor)),
+                  child: Text('Add city', style: TextStyle(fontSize: 30, color: primaryColor)),
                   onPressed: () {
                     Navigator.pop(context, cityName);
-                  })
+                  }),
+              //todo show cities list
             ],
           ),
         ),

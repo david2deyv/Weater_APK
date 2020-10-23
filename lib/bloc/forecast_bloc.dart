@@ -17,6 +17,7 @@ class ForecastBloc {
   Stream<ForecastState> get state =>
       _stateController.stream.asBroadcastStream();
 
+  //todo add target as parameter
   ForecastBloc(this._repository) {
     _loadWeather();
     _eventController.stream.listen(_handle);

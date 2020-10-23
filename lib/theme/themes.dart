@@ -7,7 +7,7 @@ class AppThemes {
         ThemeData(
           primaryColor: Colors.blueGrey,
           scaffoldBackgroundColor: Colors.blueGrey,
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey[400],
           accentColor: Colors.cyan[200],
           brightness: Brightness.light,
           textTheme: context != null ? Theme.of(context).textTheme.apply(
@@ -28,22 +28,17 @@ class AppThemes {
                 displayColor: Colors.green,
               ) : TextTheme(),
         ),
-        // ThemeData(
-        //   primaryColor: Colors.grey,
-        //   scaffoldBackgroundColor: Colors.grey,
-        //   backgroundColor: Colors.grey,
-        //   accentColor: Colors.green,
-        //   brightness: Brightness.dark,
-        //         textTheme: context != null ? Theme.of(context).textTheme.apply(
-        //         bodyColor: Colors.black,
-        //         decorationColor: Colors.white,
-        //         displayColor: Colors.white,
-        //       ) : TextTheme(),
-        //   // textTheme: const TextTheme().apply(
-        //   //   bodyColor: Colors.white,
-        //   //   decorationColor: Colors.white,
-        //   //   displayColor: Colors.white,
-        //   // ),
-        // ),
-      ];
+        ThemeData(
+          primaryColor: Colors.white,
+          scaffoldBackgroundColor: Colors.white,
+          backgroundColor: Colors.white,
+          accentColor: Colors.black87,
+          brightness: Brightness.light,
+                textTheme: context != null ? Theme.of(context).textTheme.apply(
+                bodyColor: Colors.black87,
+                decorationColor: Colors.white,
+                displayColor: Colors.white,
+              ) : TextTheme(),
+        ),
+  ];
 }
