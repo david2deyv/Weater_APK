@@ -26,7 +26,8 @@ class ForecastBloc {
   Future<void> _handle(ForecastEvent event) async {
     if (event is ErrorEvent) {
       _stateController.sink.add(RetryState());
-    } else if (event is ResetEvent) {
+    } else
+      if (event is ResetEvent) {
       _loadWeather();
     } else if (event is ChangeCityEvent) {
       _target = WeatherTargetCity(event.city);

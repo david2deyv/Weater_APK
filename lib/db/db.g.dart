@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `cities` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `lat` REAL, `lon` REAL)');
+            'CREATE TABLE IF NOT EXISTS `cities` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -100,12 +100,15 @@ class _$CitiesDao extends CitiesDao {
         _cityEntityInsertionAdapter = InsertionAdapter(
             database,
             'cities',
-            (CityEntity item) => <String, dynamic>{
-                  'id': item.id,
-                  'name': item.name,
-                  'lat': item.lat,
-                  'lon': item.lon
-                },
+            (CityEntity item) =>
+                <String, dynamic>{'id': item.id, 'name': item.name},
+            changeListener),
+        _cityEntityDeletionAdapter = DeletionAdapter(
+            database,
+            'cities',
+            ['id'],
+            (CityEntity item) =>
+                <String, dynamic>{'id': item.id, 'name': item.name},
             changeListener);
 
   final sqflite.DatabaseExecutor database;
@@ -116,25 +119,29 @@ class _$CitiesDao extends CitiesDao {
 
   final InsertionAdapter<CityEntity> _cityEntityInsertionAdapter;
 
-  @override
-  Future<List<CityEntity>> getAllCities() async {
-    return _queryAdapter.queryList('SELECT * FROM cities',
-        mapper: (Map<String, dynamic> row) => CityEntity(row['id'] as int,
-            row['name'] as String, row['lat'] as double, row['lon'] as double));
-  }
+  final DeletionAdapter<CityEntity> _cityEntityDeletionAdapter;
 
   @override
-  Stream<CityEntity> findCityById(int id) {
-    return _queryAdapter.queryStream('SELECT * FROM cities WHERE id = ?',
-        arguments: <dynamic>[id],
+  Stream<List<CityEntity>> getAllCities() {
+    return _queryAdapter.queryListStream('SELECT * FROM cities',
         queryableName: 'cities',
         isView: false,
-        mapper: (Map<String, dynamic> row) => CityEntity(row['id'] as int,
-            row['name'] as String, row['lat'] as double, row['lon'] as double));
+        mapper: (Map<String, dynamic> row) =>
+            CityEntity(row['name'] as String, id: row['id'] as int));
   }
 
   @override
-  Future<void> insertCity(CityEntity city) async {
-    await _cityEntityInsertionAdapter.insert(city, OnConflictStrategy.replace);
+  Future<void> addCity(CityEntity city) async {
+    await _cityEntityInsertionAdapter.insert(city, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> deleteAllCities(List<CityEntity> city) async {
+    await _cityEntityDeletionAdapter.deleteList(city);
+  }
+
+  @override
+  Future<void> deleteCiti(CityEntity cities) async {
+    await _cityEntityDeletionAdapter.delete(cities);
   }
 }
